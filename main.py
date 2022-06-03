@@ -1,5 +1,3 @@
-import pytest
-
 def calcular_area_quadrado (lado):
     return lado * lado
 
@@ -24,6 +22,15 @@ def multiplicar_dois_numeros(num1,num2):
 
 def elevar_um_numero_pelo_outro(base,exp):
     return base ** exp
+
+def calcular_area_circulo(raio):
+    try:
+        return 3.14 * raio ** 2
+    except TypeError:
+        return 'Falha no cálculo - Raio não é um número'
+
+def calcular_volume_do_paralelograma(largura, comprimento, altura):
+    return largura * comprimento * altura
 
 if __name__ == '__main__':
     soma = somar_dois_numeros(5,7)
@@ -70,8 +77,15 @@ def test_calcular_area_triangulo():
 
     assert resultado_esperado == resultado_atual
 
-def calcular_area_circulo(raio):
-    return 3.14 * (raio ** 2)
+def test_calcular_volume_do_paralelograma():
+    largura = 5
+    comprimento = 10
+    altura = 2
+    resultado_esperado = 100
+    resultado_atual = calcular_volume_do_paralelograma(largura,comprimento,altura)
+
+    assert resultado_esperado == resultado_atual
+
 
 
 '''def test_somar_dois_numeros():

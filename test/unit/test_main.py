@@ -1,7 +1,11 @@
+
 import unittest
 
+import pytest
+
 from main import calcular_area_triangulo, somar_dois_numeros, dividir_dois_numeros, multiplicar_dois_numeros, \
-    elevar_um_numero_pelo_outro, calcular_area_retangulo, calcular_area_quadrado, calcular_area_circulo
+    elevar_um_numero_pelo_outro, calcular_area_retangulo, calcular_area_quadrado, calcular_area_circulo, calcular_volume_do_paralelograma
+
 
 
 def test_calcular_area_quadrado():
@@ -74,12 +78,32 @@ def test_elevar_dois_numeros():
 
     assert resultado_esperado == resultado_atual
 
-def test_calcular_area_circulo():
-    raio = 1
-    resultado_esperado = 3.14
+#anotação para utilizar como massa de teste
+@pytest.mark.parametrize('raio,resultado_esperado',[
+                             (1,3.14), #teste n1
+                             (2,12.56), #teste n2
+                             (3,28.26), #teste n3
+                         ])
+
+def test_calcular_area_circulo(raio, resultado_esperado):
+    #raio = 1
+    #resultado_esperado = 3.14
+
     resultado_atual = calcular_area_circulo(raio)
     assert resultado_esperado == resultado_atual
 
 # Calcular e testar a área de um círculo
 # Area = 3,14 * (raio ** 2)
 
+def testar_calcular_volume_do_paralelograma():
+    #1 Configura
+    largura = 5
+    comprimento = 10
+    altura = 2
+    resultado_esperado = 100
+
+    #2 Executa
+    resultado_atual = calcular_volume_do_paralelograma(largura, comprimento, altura)
+
+    #3 Valida
+    assert resultado_esperado == resultado_atual
